@@ -1,23 +1,33 @@
 <template>
   <div id="app">
-    <b-navbar toggleable="md" variant="dark" type="dark">
-      <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-      <img src="" class="img-circle" style="padding: 5px">
-      <b-navbar-brand to="/">Movies Web App</b-navbar-brand>
-      <b-collapse is-nav id="nav_collapse">
-        <b-navbar-nav>
-          <b-nav-item to="/#"><i class="fa fa-home" style="padding: 5px"> Home</i></b-nav-item>
-          <b-nav-item to="/movies"><i class="fa fa-list" style="padding: 5px"> Movies</i></b-nav-item>
-        </b-navbar-nav>
-        <b-navbar-nav class="ml-auto">
-          <b-nav-item to="/login"><i class="fa fa-sign-in" style="padding: 5px"> Login </i></b-nav-item>
-          <b-nav-item to="/logout"><i class="fa fa-sign-out" style="padding: 5px"> Logout </i></b-nav-item>
-          <i class="fa fa-pied-piper-alt fa-1x" style="padding: 5px; color: white;"></i>
-        </b-navbar-nav>
-      </b-collapse>
-    </b-navbar>
+    <div class="ui inverted segment">
+      <div class="ui inverted secondary pointing menu">
+        <a class="item">
+          <b-nav-item to="/#"><i class="home icon"></i>Home</b-nav-item>
+        </a>
+          <b-nav-item to="/movies"><i class="video camera icon"></i> Movies</b-nav-item>
+        <div class="right menu">
+          <a class="item">
+            <b-nav-item to="/AboutUs">About Us</b-nav-item>
+          </a>
+          <a class="item">
+            <b-nav-item to="/ContactUs">Contact Us</b-nav-item>
+          </a>
+          <div class="item">
+            <b-nav-item to="/Signup">
+              <div class="ui primary button">Sign Up</div>
+            </b-nav-item>
+          </div>
+          <div class="item">
+              <b-nav-item to="/Login">
+            <div class="ui primary button">Log In</div>
+              </b-nav-item>
+          </div>
+        </div>
+      </div>
+    </div>
     <router-view/>
-  </div>
+    </div>
 </template>
 
 <script>
@@ -34,5 +44,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.VueTables__sortable {
+  cursor: pointer;
 }
 </style>

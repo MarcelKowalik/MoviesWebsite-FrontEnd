@@ -1,23 +1,21 @@
 <template>
   <div class="hero">
-    <h1 class="vue-title">Homer for President !!</h1>
+    <h1 class="vue-title">Website for Movie Fanatics!</h1>
 
     <table align="center">
       <tr>
         <td>
-          <p class="lead"><b><i>Time for a change !!</i></b>
-          <p>Out with Boring Prumt - Giving has never been so easy.</p>
-          <p>Just click <a href ="/movies">here</a> to go to</p>
-          <p>the Donation page and empty your wallet</p>
+          <div class="ui message">
+            <div class="header">
+              This Website enables you to store your favourite movies, edit and rate them!
+            </div>
+            <p>Click <a href ="#/movies">here</a> to view the movie collection.</p>
+          </div>
         </td>
-        <td>
-          <img src="" alt="description here" />
-        </td>
+        <img class="ui centered large image" src="https://boygeniusreport.files.wordpress.com/2016/03/movies-tiles.jpg?quality=98&strip=all">
       </tr>
     </table>
 
-    <p></p>
-    <p class="lead">This is the homepage of your <b>MEVN</b> Web app</p>
   </div>
 </template>
 

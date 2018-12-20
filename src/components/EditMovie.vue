@@ -1,11 +1,13 @@
 <template>
   <div id="app1" class="hero">
-    <h3 class="vue-title"><i class="fa fa-money" style="padding: 3px"></i>{{messagetitle}}</h3>
+    <h3 class="vue-title"><i style="padding: 3px"></i>{{messagetitle}}</h3>
     <div class="container mt-3 mt-sm-5">
       <div class="row justify-content-center">
         <div class="col-md-6">
-          <movie-form :movie="movie" movieBtnTitle="Add Movie"
-                         @movie-is-created-updated="submitMovie"></movie-form>
+          <template v-if="childDataLoaded">
+          <movie-form :movie="movie" movieBtnTitle="Edit Movie"
+                         @movie-is-created-updated="updateMovie"></movie-form>
+          </template>
         </div><!-- /col -->
       </div><!-- /row -->
     </div><!-- /container -->
@@ -19,18 +21,38 @@ import MovieForm from '@/components/MoviesForm'
 export default {
   data () {
     return {
-      movie: {title: 'Direct', amount: 0.0, message: ''},
-      messagetitle: ' Add Movie! '
+      movie: {},
+      childDataLoaded: false,
+      temp: {},
+      messagetitle: ' Edit Movie! '
     }
   },
   components: {
     'movie-form': MovieForm
   },
+  created () {
+    this.getMovie()
+  },
   methods: {
-    submitMovie: function (movie) {
-      MovieService.postMovie(movie)
+    getMovie: function () {
+      MovieService.fetchEditMovies(this.$router.params)
+        .then(response => {
+          this.temp = response.data
+          this.movie = this.temp[0]
+          this.childDataLoaded = true
+          console.log('Getting Donation in Edit: ' + JSON.stringify(this.movie, null, 5))
+        })
+        .catch(error => {
+          this.errors.push(error)
+          console.log(error)
+        })
+    },
+    updateMovie: function (movie) {
+      console.log('Before PUT ' + JSON.stringify(movie, null, 5))
+      MovieService.putEditMovie(this.$router.params, movie)
         .then(response => {
           console.log(response)
+          console.log('AFTER PUT ' + JSON.stringify(movie, null, 5))
         })
         .catch(error => {
           this.errors.push(error)
@@ -39,6 +61,7 @@ export default {
     }
   }
 }
+
 </script>
 
 <style scoped>
